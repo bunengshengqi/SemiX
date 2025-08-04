@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 工业风格全局样式 */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-industrial-50 text-industrial-900 font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-steel-800 font-semibold;
+  }
+}
+
+@layer components {
+  /* 工业风格按钮 */
+  .btn-primary {
+    @apply bg-accent-blue text-white px-4 py-2 rounded-industrial font-medium
+           hover:bg-blue-600 transition-colors duration-200
+           shadow-industrial border border-transparent;
+  }
+
+  .btn-secondary {
+    @apply bg-steel-100 text-steel-700 px-4 py-2 rounded-industrial font-medium
+           hover:bg-steel-200 transition-colors duration-200
+           shadow-industrial border border-steel-300;
+  }
+
+  /* 工业风格卡片 */
+  .card {
+    @apply bg-white rounded-industrial shadow-industrial-lg border border-steel-200 p-6;
+  }
+
+  /* 工业风格输入框 */
+  .input {
+    @apply w-full px-3 py-2 border border-steel-300 rounded-industrial
+           focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent
+           bg-white text-steel-900 placeholder-steel-500;
+  }
+
+  /* 导航栏样式 */
+  .navbar {
+    @apply bg-steel-800 text-white shadow-industrial-lg border-b border-steel-700;
+  }
+
+  /* 侧边栏样式 */
+  .sidebar {
+    @apply bg-steel-100 border-r border-steel-300 h-full;
+  }
+}
