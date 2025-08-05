@@ -428,3 +428,10 @@ class CommunityService:
         db.commit()
         db.refresh(db_favorite)
         return db_favorite
+
+    @staticmethod
+    def get_categories(db: Session) -> List[CommunityCategory]:
+        """获取所有分类"""
+        return db.query(CommunityCategory).filter(
+            CommunityCategory.is_active == True
+        ).order_by(CommunityCategory.sort_order).all()

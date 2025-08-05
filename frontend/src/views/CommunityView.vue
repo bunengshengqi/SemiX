@@ -11,7 +11,7 @@
             半导体出海专业交流平台，分享经验，解决问题，共同成长
           </p>
           <div class="flex justify-center space-x-4">
-            <button class="btn-primary">
+            <button @click="router.push('/community/create')" class="btn-primary">
               发布帖子
             </button>
             <button class="btn-secondary bg-transparent border-2 border-white text-white hover:bg-white hover:text-steel-800">
@@ -299,6 +299,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 // 响应式数据
 const stats = ref({})
@@ -336,7 +339,7 @@ const postTypes = ref([
 // 获取统计数据
 const fetchStats = async () => {
   try {
-    const response = await fetch('http://localhost:8000/api/v1/community/stats')
+    const response = await fetch('http://localhost:8001/api/v1/community/stats')
     if (response.ok) {
       stats.value = await response.json()
     } else {
@@ -365,7 +368,7 @@ const fetchPosts = async () => {
     params.append('sort_by', sortBy.value)
     params.append('sort_order', 'desc')
     
-    const response = await fetch(`http://localhost:8000/api/v1/community/?${params.toString()}`)
+    const response = await fetch(`http://localhost:8001/api/v1/community/?${params.toString()}`)
     if (response.ok) {
       posts.value = await response.json()
     } else {
@@ -416,8 +419,7 @@ const loadMore = () => {
 
 // 查看帖子详情
 const viewPostDetail = (post: any) => {
-  // TODO: 跳转到帖子详情页面
-  console.log('查看帖子详情:', post)
+  router.push(`/community/${post.id}`)
 }
 
 // 工具函数

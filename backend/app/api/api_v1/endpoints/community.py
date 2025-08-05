@@ -64,6 +64,11 @@ async def get_community_stats(db: Session = Depends(get_db)):
     """获取社区统计信息 - 公开访问"""
     return CommunityService.get_community_stats(db)
 
+@router.get("/categories", response_model=List[CommunityCategory])
+async def get_community_categories(db: Session = Depends(get_db)):
+    """获取社区分类列表 - 公开访问"""
+    return CommunityService.get_categories(db)
+
 @router.get("/featured", response_model=List[CommunityPost])
 async def get_featured_posts(
     limit: int = Query(10, ge=1, le=50, description="返回记录数"),
