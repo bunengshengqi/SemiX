@@ -30,6 +30,31 @@ const router = createRouter({
       component: () => import('../views/TrialView.vue'),
     },
     {
+      path: '/policies',
+      name: 'policies',
+      component: () => import('../views/PoliciesView.vue'),
+    },
+    {
+      path: '/suppliers',
+      name: 'suppliers',
+      component: () => import('../views/SuppliersView.vue'),
+    },
+    {
+      path: '/market',
+      name: 'market',
+      component: () => import('../views/MarketIntelligenceView.vue'),
+    },
+    {
+      path: '/compliance',
+      name: 'compliance',
+      component: () => import('../views/ComplianceToolsView.vue'),
+    },
+    {
+      path: '/marketplace',
+      name: 'marketplace',
+      component: () => import('../views/MarketplaceView.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

@@ -28,15 +28,14 @@ app.add_middleware(TrustedHostMiddleware, allowed_hosts=["*"])
 # 包含API路由
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
-# 暂时注释掉启动事件，先让服务器启动
-# @app.on_event("startup")
-# async def startup_event():
-#     """应用启动时创建数据库表"""
-#     try:
-#         create_tables()
-#         print("✅ 数据库表创建成功")
-#     except Exception as e:
-#         print(f"❌ 数据库表创建失败: {e}")
+@app.on_event("startup")
+async def startup_event():
+    """应用启动时创建数据库表"""
+    try:
+        create_tables()
+        print("✅ 数据库表创建成功")
+    except Exception as e:
+        print(f"❌ 数据库表创建失败: {e}")
 
 @app.get("/")
 async def root():

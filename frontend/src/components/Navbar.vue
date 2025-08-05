@@ -28,14 +28,21 @@
               <RouterLink to="/compliance" class="dropdown-link">合规工具</RouterLink>
             </div>
           </div>
+          <RouterLink to="/marketplace" class="nav-link">二手交易</RouterLink>
           <RouterLink to="/community" class="nav-link">讨论社区</RouterLink>
           <RouterLink to="/about" class="nav-link">关于我们</RouterLink>
         </div>
 
         <!-- 用户操作区 -->
         <div class="flex items-center space-x-4">
-          <RouterLink to="/login" class="btn-secondary text-sm">登录</RouterLink>
-          <RouterLink to="/register" class="btn-primary text-sm">免费注册</RouterLink>
+          <div v-if="authStore.isAuthenticated" class="flex items-center space-x-4">
+            <span class="text-steel-700">欢迎, {{ authStore.user?.full_name || authStore.user?.username }}</span>
+            <button @click="handleLogout" class="btn-secondary text-sm">退出登录</button>
+          </div>
+          <div v-else class="flex items-center space-x-4">
+            <RouterLink to="/login" class="btn-secondary text-sm">登录</RouterLink>
+            <RouterLink to="/register" class="btn-primary text-sm">免费注册</RouterLink>
+          </div>
         </div>
 
         <!-- 移动端菜单按钮 -->
@@ -52,6 +59,16 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { ChevronDown as ChevronDownIcon, Menu as MenuIcon } from 'lucide-vue-next'
+import { useAuthStore } from '../stores/auth'
+import { useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+const handleLogout = () => {
+  authStore.logout()
+  router.push('/')
+}
 </script>
 
 <style scoped>

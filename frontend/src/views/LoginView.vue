@@ -102,8 +102,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 
 const router = useRouter()
+const authStore = useAuthStore()
 
 const form = ref({
   email: '',
@@ -117,18 +119,21 @@ const error = ref('')
 const handleLogin = async () => {
   loading.value = true
   error.value = ''
-  
+
   try {
-    // TODO: 实现登录逻辑
-    console.log('登录表单数据:', form.value)
-    
-    // 模拟API调用
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // 登录成功后跳转到首页
-    router.push('/')
-  } catch (err) {
-    error.value = '登录失败，请检查邮箱和密码'
+    const success = await authStore.login({
+      username: form.value.email,
+      password: form.value.password
+    })
+
+    if (success) {
+      // 登录成功后跳转到首页
+      router.push('/')
+    } else {
+      error.value = authStore.error || '登录失败，请检查邮箱和密码'
+    }
+  } catch (err: any) {
+    error.value = err.message || '登录失败，请稍后重试'
   } finally {
     loading.value = false
   }

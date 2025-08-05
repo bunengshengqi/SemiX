@@ -38,4 +38,10 @@ def get_db():
 # 创建所有表
 def create_tables():
     from app.models.user import User  # 导入所有模型
+    from app.models.policy import Policy
+    from app.models.supplier import Supplier
+    from app.models.market_intelligence import MarketIntelligence, IntelligenceComment, IntelligenceView
+    from app.models.compliance_tool import ComplianceTool, ToolUsageLog, ToolReview, ComplianceRegulation
+    from app.models.marketplace import MarketplaceListing, MarketplaceInquiry, MarketplaceFavorite, MarketplaceCategory, MarketplaceReport
+    from app.models.community import CommunityPost, CommunityComment, CommunityLike, CommunityCommentLike, CommunityFavorite, CommunityCategory, CommunityReport, CommunityExpert
     Base.metadata.create_all(bind=engine)

@@ -6,7 +6,8 @@ from app.api.api_v1.endpoints import (
     suppliers,
     market_intelligence,
     compliance_tools,
-    community
+    community,
+    marketplace
 )
 
 api_router = APIRouter()
@@ -31,3 +32,6 @@ api_router.include_router(compliance_tools.router, prefix="/compliance", tags=["
 
 # 社区讨论路由
 api_router.include_router(community.router, prefix="/community", tags=["社区讨论"])
+
+# 二手交易路由
+api_router.include_router(marketplace.router, prefix="/marketplace", tags=["二手交易"])
