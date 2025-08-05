@@ -34,8 +34,8 @@
 
         <!-- 用户操作区 -->
         <div class="flex items-center space-x-4">
-          <button class="btn-secondary text-sm">登录</button>
-          <button class="btn-primary text-sm">免费注册</button>
+          <RouterLink to="/login" class="btn-secondary text-sm">登录</RouterLink>
+          <RouterLink to="/register" class="btn-primary text-sm">免费注册</RouterLink>
         </div>
 
         <!-- 移动端菜单按钮 -->

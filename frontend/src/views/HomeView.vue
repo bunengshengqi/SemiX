@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { TrendingUp, Globe, Shield, Users } from 'lucide-vue-next'
+
+const scrollToFeatures = () => {
+  const featuresSection = document.querySelector('#features-section')
+  if (featuresSection) {
+    featuresSection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 </script>
 
 <template>
@@ -16,10 +23,10 @@ import { TrendingUp, Globe, Shield, Users } from 'lucide-vue-next'
             为半导体企业提供日韩新台政策监控、供应商目录、市场情报、合规工具等一站式出海服务
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button class="btn-primary text-lg px-8 py-3">
+            <RouterLink to="/register" class="btn-primary text-lg px-8 py-3 text-center">
               免费试用
-            </button>
-            <button class="btn-secondary text-lg px-8 py-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-steel-800">
+            </RouterLink>
+            <button class="btn-secondary text-lg px-8 py-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-steel-800" @click="scrollToFeatures">
               查看演示
             </button>
           </div>
@@ -28,7 +35,7 @@ import { TrendingUp, Globe, Shield, Users } from 'lucide-vue-next'
     </section>
 
     <!-- 核心功能模块 -->
-    <section class="py-16 bg-white">
+    <section id="features-section" class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-steel-800 mb-4">核心服务模块</h2>

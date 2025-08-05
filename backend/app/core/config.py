@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "SemiX - 半导体出海信息服务平台"
 
     # 数据库配置
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./semix.db")
 
     # JWT配置
     SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key-here")
