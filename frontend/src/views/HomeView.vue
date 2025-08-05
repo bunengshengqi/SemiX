@@ -1,12 +1,5 @@
 <script setup lang="ts">
 import { TrendingUp, Globe, Shield, Users } from 'lucide-vue-next'
-
-const scrollToFeatures = () => {
-  const featuresSection = document.querySelector('#features-section')
-  if (featuresSection) {
-    featuresSection.scrollIntoView({ behavior: 'smooth' })
-  }
-}
 </script>
 
 <template>
@@ -23,12 +16,12 @@ const scrollToFeatures = () => {
             为半导体企业提供日韩新台政策监控、供应商目录、市场情报、合规工具等一站式出海服务
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <RouterLink to="/register" class="btn-primary text-lg px-8 py-3 text-center">
+            <RouterLink to="/trial" class="btn-primary text-lg px-8 py-3 text-center">
               免费试用
             </RouterLink>
-            <button class="btn-secondary text-lg px-8 py-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-steel-800" @click="scrollToFeatures">
+            <RouterLink to="/demo" class="btn-secondary text-lg px-8 py-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-steel-800 text-center">
               查看演示
-            </button>
+            </RouterLink>
           </div>
         </div>
       </div>

@@ -10,6 +10,12 @@
         <h2 class="mt-6 text-center text-3xl font-bold text-steel-800">
           创建新账户
         </h2>
+        <div v-if="form.trialPlan" class="mt-4 text-center">
+          <div class="inline-flex items-center bg-accent-orange bg-opacity-10 text-accent-orange px-4 py-2 rounded-full text-sm font-medium">
+            <span class="mr-2">🎉</span>
+            已选择{{ form.trialPlan === 'basic' ? '基础' : form.trialPlan === 'professional' ? '专业' : '企业' }}试用套餐
+          </div>
+        </div>
         <p class="mt-2 text-center text-sm text-steel-600">
           已有账户？
           <RouterLink to="/login" class="font-medium text-accent-blue hover:text-blue-600">
@@ -156,11 +162,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { RouterLink } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 
 const form = ref({
   username: '',
@@ -169,11 +176,20 @@ const form = ref({
   company: '',
   password: '',
   confirm_password: '',
-  agreeTerms: false
+  agreeTerms: false,
+  trialPlan: ''
 })
 
 const loading = ref(false)
 const error = ref('')
+
+// 检查URL参数中的试用套餐
+onMounted(() => {
+  const plan = route.query.plan as string
+  if (plan && ['basic', 'professional', 'enterprise'].includes(plan)) {
+    form.value.trialPlan = plan
+  }
+})
 
 const handleRegister = async () => {
   loading.value = true
